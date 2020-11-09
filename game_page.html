@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		body {
+			background-color: aliceblue;
+		}
+		button {
+			margin: 10px;
+			background-color: lightcoral;
+			font-size: 20px;
+		}
+	</style>
+	<script type="text/javascript">
+		var q_no = 0;
+		var main_q_data = [
+			[
+				{
+					audio: ["Test.mp3", "Test2.mp3"],
+					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
+					correct_answer: 1
+				},
+				{
+					audio: ["Test.mp3", "Test2.mp3"],
+					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
+					correct_answer: 2
+				},
+				{
+					audio: ["Test.mp3", "Test2.mp3"],
+					answers: ["Michael Jackson", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
+					correct_answer: 3
+				},
+				{
+					audio: ["Test.mp3", "Test2.mp3"],
+					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
+					correct_answer: 4
+				}
+			],
+
+			[
+				{
+					audio: "Test.mp3",
+					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
+					correct_answer: 4
+				},
+				{
+					audio: "Test.mp3",
+					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
+					correct_answer: 3
+				},
+				{
+					audio: "Test.mp3",
+					answers: ["Michael Jackson", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
+					correct_answer: 2
+				},
+				{
+					audio: "Test.mp3",
+					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
+					correct_answer: 1
+				}
+			]
+		];
+		var genre_option = 0;
+		function fadeOutComplete(img, speed){
+			img.style.opacity = 1
+			var increment = 0.01
+			let interval = setInterval(function(){
+					img.style.opacity -= increment;
+					if (img.style.opacity <= 0) {
+						clearInterval(interval)
+						img.style.display = "none"
+					}
+				}, 200/speed);
+		}
+		function fadeOut(img, speed){
+			img.style.opacity = 1
+			var increment = 0.01
+			let interval = setInterval(function(){
+					img.style.opacity -= increment;
+					if (img.style.opacity <= 0) {
+						clearInterval(interval)
+					}
+				}, 200/speed);
+		}
+		function fadeIn(img, speed){
+			img.style.opacity = 0
+			img.style.display = "block";
+			var increment = 0.01
+			let interval = setInterval(function(){
+					img.style.opacity = 1*img.style.opacity + increment;
+					if (img.style.opacity >= 1) {
+						clearInterval(interval)
+					}
+				}, 200/speed);
+		}
+		function show_genres() {
+			document.getElementById('start_page').style.display = "none";
+			document.getElementById('genres_page').style.display = "block";
+		}
+		function start_game(genre) {
+			document.getElementById('genres_page').style.display = "none";
+			document.getElementById('game_page').style.display = "block";
+			genre_option = genre - 1
+			load_first_question();
+		}
+
+		function load_first_question(argument) {
+			document.getElementById('songgif').style.visibility = "hidden";
+			var q_data = main_q_data[genre_option][q_no];
+			document.getElementById('songaudio').src = q_data["audio"][0];
+			document.getElementById('opt_1').innerHTML = q_data["answers"][0];
+			document.getElementById('opt_2').innerHTML = q_data["answers"][1];
+			document.getElementById('opt_3').innerHTML = q_data["answers"][2];
+			document.getElementById('opt_4').innerHTML = q_data["answers"][3];
+			document.getElementById('correct/wrong').style.display = "none";
+			document.getElementById('next_button').style.visibility = "hidden";
+			play_audio('songaudio')
+		}
+
+		function play_audio(id) {
+			var audio = document.getElementById(id)
+			if (!audio.paused) {
+				audio.pause();
+				audio.currentTime = 0.0;
+			}
+			audio.play();
+			if (id == "songaudio") {
+				document.getElementById('songgif').style.visibility = "visible";
+				fadeIn(document.getElementById('songgif'), 20)
+				document.getElementById('correct/wrong').style.display = "none";
+			}
+		}
+		function stop_audio(id) {
+			document.getElementById('songaudio').pause();
+			if (id == 'songaudio') {
+				fadeOut(document.getElementById('songgif'), 30)
+				// document.getElementById('songgif').style.visibility = "hidden";
+
+			}
+		}
+		function next_clip() {
+			document.getElementById('songaudio').src = main_q_data[genre_option][q_no]["audio"][1]
+			play_audio('songaudio')
+		}
+		function get_answer(option) {
+			document.getElementById('correct/wrong').style.opacity = 1;
+			document.getElementById('songaudio').pause();
+			document.getElementById('songgif').style.visibility = "hidden";
+			document.getElementById('correct/wrong').style.display = "block";
+			if (option == main_q_data[genre_option][q_no]["correct_answer"]) {
+				document.getElementById('opt_'+option).style.backgroundColor = "green";
+				document.getElementById('correct/wrong').src = "tick.png";
+				fadeIn(document.getElementById('correct/wrong'), 25)
+				play_audio('rightaudio')
+				fadeOut(document.getElementById("options"), 25)
+				fadeOutComplete(document.getElementById('correct/wrong'), 25)
+				fadeIn(document.getElementById("options"), 25)
+			}
+			else {
+				document.getElementById('opt_'+option).style.backgroundColor = "grey";
+				document.getElementById('correct/wrong').src = "cross.png";
+				fadeIn(document.getElementById('correct/wrong'), 25)
+				play_audio('wrongaudio')
+				fadeOut(document.getElementById("options"), 25)
+				fadeOutComplete(document.getElementById('correct/wrong'), 25)
+				fadeIn(document.getElementById("options"), 25)
+			}
+			document.getElementById('next_button').style.visibility = "visible";
+			document.activeElement.blur();
+			document.getElementById('game_page').focus()
+		}
+		function next_question() {
+			q_no += 1;
+			var opt_buttons = document.getElementsByClassName("opt_buttons")
+			for (var i = opt_buttons.length - 1; i >= 0; i--) {
+				opt_buttons[i].style.backgroundColor = "lightcoral";
+			}
+			
+			if (q_no<main_q_data[genre_option].length){
+				document.getElementById('songgif').style.visibility = "hidden";
+				var q_data = main_q_data[genre_option][q_no];
+				document.getElementById('songaudio').src = q_data["audio"][0];
+				document.getElementById('opt_1').innerHTML = q_data["answers"][0];
+				document.getElementById('opt_2').innerHTML = q_data["answers"][1];
+				document.getElementById('opt_3').innerHTML = q_data["answers"][2];
+				document.getElementById('opt_4').innerHTML = q_data["answers"][3];
+				fadeOutComplete(document.getElementById('correct/wrong'), 25);
+				document.getElementById('next_button').style.visibility = "hidden";
+				play_audio('songaudio')
+			}
+		}
+		function show_answers() {
+			document.getElementById('songaudio').pause();
+			document.getElementById('songgif').style.visibility = "hidden";
+			var opt_buttons = document.getElementsByClassName("opt_buttons")
+			for (var i = opt_buttons.length - 1; i >= 0; i--) {
+				if (i+1 == main_q_data[genre_option][q_no]["correct_answer"]) {
+					opt_buttons[i].style.backgroundColor = "green";
+				}
+				else{
+					opt_buttons[i].style.backgroundColor = "grey";
+				}
+			}
+			document.getElementById('next_button').style.visibility = "visible";
+		}
+		function key_pressed(e){
+			e.preventDefault()
+			if(e.which == 32){
+				play_audio('songaudio');
+			}
+		};
+
+	</script>
+	<title></title>
+</head>
+
+<body onkeydown = "key_pressed(event)">
+	<div id="start_page" style="height: 500px; display: flex; align-items: center; justify-content: center;">
+		<button type="button" style="width: 50%; height: 70px;" onclick="show_genres()">Start Game</button>
+	</div>
+
+	<div id="genres_page" style="display: none;">
+		<div style="height: 600px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+			<button type="button" style="width: 50%; height: 70px; margin: 10px" onclick="start_game(1)">English</button>
+			<button type="button" style="width: 50%; height: 70px; margin: 10px" onclick="start_game(2)">Hindi</button>
+			<button type="button" style="width: 50%; height: 70px; margin: 10px" onclick="start_game(3)">Tamil</button>
+		</div>
+	</div>
+
+	<div id="game_page" style="display: none;">
+		<audio id="songaudio">
+			<source src="Test.mp3" type="audio/mp3">
+		</audio>
+
+		<audio id="wrongaudio">
+			<source src="wrong.mp3" type="audio/mp3">
+		</audio>
+
+		<audio id="rightaudio">
+			<source src="right.mp3" type="audio/mp3">
+		</audio>
+
+		<img id="songgif" src="visualiser(2).gif" style="width: 100%; height: 200px; visibility: hidden;">
+
+		<div style="display: flex; align-items: flex-start; justify-content: center; height: 100px; padding: 10px;">
+			<!-- <button type="button" onclick="play_audio()"> --><img id="play" src="play.png" style="width: 50px;" onclick="play_audio('songaudio')">
+			<!-- <button type="button" onclick="stop_audio()"> --><img id="pause" src="pause.png" style="width: 50px;" onclick="stop_audio('songaudio')">
+				<img id="next_clip" src="next.png" style="width: 50px;" onclick="next_clip()">
+		</div>
+
+		<div id="options">
+			<div style="display: flex; justify-content: center; height: 70px">
+		 		<button class="opt_buttons" id="opt_1" type="button" style="width: 50%" onclick="get_answer(1)">Option 1</button>
+		 		<button class="opt_buttons" id="opt_2" type="button" style="width: 50%" onclick="get_answer(2)">Option 2</button>	
+		 	</div>
+
+			<div style="display: flex; justify-content: center; height: 70px">
+				<button class="opt_buttons" id="opt_3" type="button" style="width: 50%" onclick="get_answer(3)">Option 3</button>
+		 		<button class="opt_buttons" id="opt_4" type="button" style="width: 50%" onclick="get_answer(4)">Option 4</button>
+		 	</div>
+	 	</div>
+
+	 	<div style="display: flex; align-items: center; justify-content: center; position: absolute; top: 200px; right: 500px">
+	 		<div style="display: flex; align-items: center; justify-content: center;">
+	 			<img id="correct/wrong" src="" style="height: 400px; display: none;">
+	 		</div>
+	 	</div>
+
+	 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+	 	<div style="height: 100%; display: flex; align-items: flex-end; justify-content: flex-end;">
+	 		<button id="ans_button" type="button" style="width: 30%;" onclick="show_answers()">Show Answers</button>
+	 		<button id="next_button" type="button" style="width: 30%; visibility: hidden;" onclick="next_question()">Next Question</button>
+	 	</div>
+	</div>
+ 	
+</body>
+</html>
