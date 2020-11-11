@@ -16,24 +16,84 @@
 		var main_q_data = [
 			[
 				{
-					audio: ["Test.mp3", "Test2.mp3"],
+					audio: ["Song_Clips_Eng/attention.mp3", "Test.mp3"],
 					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
 					correct_answer: 1
 				},
 				{
-					audio: ["Test.mp3", "Test2.mp3"],
+					audio: ["Song_Clips_Eng/back_to_you.mp3", "Test.mp3"],
 					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
 					correct_answer: 2
 				},
 				{
-					audio: ["Test.mp3", "Test2.mp3"],
+					audio: ["Song_Clips_Eng/believer.mp3", "Test.mp3"],
 					answers: ["Michael Jackson", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
 					correct_answer: 3
 				},
 				{
-					audio: ["Test.mp3", "Test2.mp3"],
+					audio: ["Song_Clips_Eng/another_brick_in_the_wall.mp3", "Test.mp3"],
 					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
 					correct_answer: 4
+				},
+				{
+					audio: ["Song_Clips_Eng/another_one_bites_the_dust.mp3", "Test.mp3"],
+					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
+					correct_answer: 1
+				},
+				{
+					audio: ["Song_Clips_Eng/blinding_lights.mp3", "Test.mp3"],
+					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
+					correct_answer: 2
+				},
+				{
+					audio: ["Song_Clips_Eng/chandelier.mp3", "Test.mp3"],
+					answers: ["Michael Jackson", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
+					correct_answer: 3
+				},
+				{
+					audio: ["Song_Clips_Eng/closer.mp3", "Test.mp3"],
+					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
+					correct_answer: 4
+				},
+				{
+					audio: ["Song_Clips_Eng/counting_stars.mp3", "Test.mp3"],
+					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
+					correct_answer: 4
+				},
+				{
+					audio: ["Song_Clips_Eng/dance_monkey.mp3", "Test.mp3"],
+					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
+					correct_answer: 1
+				},
+				{
+					audio: ["Song_Clips_Eng/despacito.mp3", "Test.mp3"],
+					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
+					correct_answer: 2
+				},
+				{
+					audio: ["Song_Clips_Eng/happier.mp3", "Test.mp3"],
+					answers: ["Michael Jackson", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
+					correct_answer: 3
+				},
+				{
+					audio: ["Song_Clips_Eng/rockabye.mp3", "Test.mp3"],
+					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
+					correct_answer: 4
+				},
+				{
+					audio: ["Song_Clips_Eng/someone_you_loved.mp3", "Test.mp3"],
+					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
+					correct_answer: 4
+				},
+				{
+					audio: ["Song_Clips_Eng/stairway_to_heaven.mp3", "Test.mp3"],
+					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
+					correct_answer: 1
+				},
+				{
+					audio: ["Song_Clips_Eng/sweet_child_o_mine.mp3", "Test.mp3"],
+					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
+					correct_answer: 2
 				}
 			],
 
@@ -105,6 +165,7 @@
 		}
 
 		function load_first_question(argument) {
+			document.getElementById('q_no').innerHTML = "Q"+(q_no+1)
 			document.getElementById('songgif').style.visibility = "hidden";
 			var q_data = main_q_data[genre_option][q_no];
 			document.getElementById('songaudio').src = q_data["audio"][0];
@@ -171,6 +232,7 @@
 		}
 		function next_question() {
 			q_no += 1;
+			document.getElementById('q_no').innerHTML = "Q"+(q_no+1)
 			var opt_buttons = document.getElementsByClassName("opt_buttons")
 			for (var i = opt_buttons.length - 1; i >= 0; i--) {
 				opt_buttons[i].style.backgroundColor = "lightcoral";
@@ -228,7 +290,7 @@
 	</div>
 
 	<div id="game_page" style="display: none;">
-		<audio id="songaudio">
+		<audio id="songaudio" onended="fadeOut(document.getElementById('songgif'), 80)">
 			<source src="Test.mp3" type="audio/mp3">
 		</audio>
 
@@ -242,10 +304,14 @@
 
 		<img id="songgif" src="visualiser(2).gif" style="width: 100%; height: 200px; visibility: hidden;">
 
-		<div style="display: flex; align-items: flex-start; justify-content: center; height: 100px; padding: 10px;">
+		<div style="display: flex; align-items: flex-start; justify-content: center; height: 50px; padding: 10px;">
 			<!-- <button type="button" onclick="play_audio()"> --><img id="play" src="play.png" style="width: 50px;" onclick="play_audio('songaudio')">
 			<!-- <button type="button" onclick="stop_audio()"> --><img id="pause" src="pause.png" style="width: 50px;" onclick="stop_audio('songaudio')">
 				<img id="next_clip" src="next.png" style="width: 50px;" onclick="next_clip()">
+		</div>
+
+		<div style="display: flex; align-items: flex-start; justify-content: center; height: 50px; padding: 10px;">
+			<h2 id="q_no">Q1</h2>
 		</div>
 
 		<div id="options">
