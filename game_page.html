@@ -13,108 +13,109 @@
 	</style>
 	<script type="text/javascript">
 		var q_no = 0;
+		var clip_no = 0;
 		var main_q_data = [
 			[
 				{
-					audio: ["Song_Clips_Eng/attention.mp3", "Test.mp3"],
-					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
-					correct_answer: 1
-				},
-				{
-					audio: ["Song_Clips_Eng/back_to_you.mp3", "Test.mp3"],
-					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
+					audio: ["Song_Clips_Eng/attention.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Taylor Swift", "Attention - Ed Sheeran", "Katy Perry", "Justin Beiber"],
 					correct_answer: 2
 				},
 				{
-					audio: ["Song_Clips_Eng/believer.mp3", "Test.mp3"],
-					answers: ["Michael Jackson", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
+					audio: ["Song_Clips_Eng/back_to_you.mp3", "Song_Clips_Eng/attention.mp3", "Song_Clips_Eng/believer.mp3"],
+					answers: ["Back to you - Salena Gomez", "Justin Beiber", "Rihanna", "Justin Timberlake"],
+					correct_answer: 1
+				},
+				{
+					audio: ["Song_Clips_Eng/believer.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Michael Jackson", "Ariana Grande", "Believer", "Miley Cyrus"],
 					correct_answer: 3
 				},
 				{
-					audio: ["Song_Clips_Eng/another_brick_in_the_wall.mp3", "Test.mp3"],
-					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
-					correct_answer: 4
-				},
-				{
-					audio: ["Song_Clips_Eng/another_one_bites_the_dust.mp3", "Test.mp3"],
-					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
-					correct_answer: 1
-				},
-				{
-					audio: ["Song_Clips_Eng/blinding_lights.mp3", "Test.mp3"],
-					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
+					audio: ["Song_Clips_Eng/another_brick_in_the_wall.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Adele", "Another brick in the wall", "Billie Eilish", "Dua Lipa"],
 					correct_answer: 2
 				},
 				{
-					audio: ["Song_Clips_Eng/chandelier.mp3", "Test.mp3"],
-					answers: ["Michael Jackson", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
+					audio: ["Song_Clips_Eng/another_one_bites_the_dust.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Another one bites the dust"],
+					correct_answer: 4
+				},
+				{
+					audio: ["Song_Clips_Eng/blinding_lights.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Lady Gaga", "Blinding lights", "Rihanna", "Justin Timberlake"],
+					correct_answer: 2
+				},
+				{
+					audio: ["Song_Clips_Eng/chandelier.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Chandelier", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
+					correct_answer: 1
+				},
+				{
+					audio: ["Song_Clips_Eng/closer.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Closer"],
+					correct_answer: 4
+				},
+				{
+					audio: ["Song_Clips_Eng/counting_stars.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Adele", "Shawn Mendes", "Counting Stars", "Dua Lipa"],
 					correct_answer: 3
 				},
 				{
-					audio: ["Song_Clips_Eng/closer.mp3", "Test.mp3"],
-					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
-					correct_answer: 4
-				},
-				{
-					audio: ["Song_Clips_Eng/counting_stars.mp3", "Test.mp3"],
-					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
-					correct_answer: 4
-				},
-				{
-					audio: ["Song_Clips_Eng/dance_monkey.mp3", "Test.mp3"],
-					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
-					correct_answer: 1
-				},
-				{
-					audio: ["Song_Clips_Eng/despacito.mp3", "Test.mp3"],
-					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
-					correct_answer: 2
-				},
-				{
-					audio: ["Song_Clips_Eng/happier.mp3", "Test.mp3"],
-					answers: ["Michael Jackson", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
+					audio: ["Song_Clips_Eng/dance_monkey.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Taylor Swift", "Ed Sheeran", "Dance monkey", "Justin Beiber"],
 					correct_answer: 3
 				},
 				{
-					audio: ["Song_Clips_Eng/rockabye.mp3", "Test.mp3"],
-					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
-					correct_answer: 4
-				},
-				{
-					audio: ["Song_Clips_Eng/someone_you_loved.mp3", "Test.mp3"],
-					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
-					correct_answer: 4
-				},
-				{
-					audio: ["Song_Clips_Eng/stairway_to_heaven.mp3", "Test.mp3"],
-					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
+					audio: ["Song_Clips_Eng/despacito.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Despacito", "Justin Beiber", "Rihanna", "Justin Timberlake"],
 					correct_answer: 1
 				},
 				{
-					audio: ["Song_Clips_Eng/sweet_child_o_mine.mp3", "Test.mp3"],
-					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
+					audio: ["Song_Clips_Eng/happier.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Michael Jackson", "Ariana Grande", "Bruno Mars", "Happier"],
+					correct_answer: 4
+				},
+				{
+					audio: ["Song_Clips_Eng/rockabye.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Adele", "Rockabye", "Billie Eilish", "Dua Lipa"],
 					correct_answer: 2
+				},
+				{
+					audio: ["Song_Clips_Eng/someone_you_loved.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Someone you loved", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
+					correct_answer: 1
+				},
+				{
+					audio: ["Song_Clips_Eng/stairway_to_heaven.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Taylor Swift", "Stairway to heaven", "Katy Perry", "Justin Beiber"],
+					correct_answer: 2
+				},
+				{
+					audio: ["Song_Clips_Eng/sweet_child_o_mine.mp3", "Song_Clips_Eng/attention.mp3"],
+					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Sweet Child O Mine"],
+					correct_answer: 4
 				}
 			],
 
 			[
 				{
-					audio: "Test.mp3",
+					audio: ["Song_Clips_Eng/attention.mp3"],
 					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
 					correct_answer: 4
 				},
 				{
-					audio: "Test.mp3",
+					audio: ["Song_Clips_Eng/attention.mp3"],
 					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
 					correct_answer: 3
 				},
 				{
-					audio: "Test.mp3",
+					audio: ["Song_Clips_Eng/attention.mp3"],
 					answers: ["Michael Jackson", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
 					correct_answer: 2
 				},
 				{
-					audio: "Test.mp3",
+					audio: ["Song_Clips_Eng/attention.mp3"],
 					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
 					correct_answer: 1
 				}
@@ -155,6 +156,7 @@
 		}
 		function show_genres() {
 			document.getElementById('start_page').style.display = "none";
+			document.getElementById('gameOver_page').style.display = "none";
 			document.getElementById('genres_page').style.display = "block";
 		}
 		function start_game(genre) {
@@ -168,7 +170,7 @@
 			document.getElementById('q_no').innerHTML = "Q"+(q_no+1)
 			document.getElementById('songgif').style.visibility = "hidden";
 			var q_data = main_q_data[genre_option][q_no];
-			document.getElementById('songaudio').src = q_data["audio"][0];
+			document.getElementById('songaudio').src = q_data["audio"][clip_no];
 			document.getElementById('opt_1').innerHTML = q_data["answers"][0];
 			document.getElementById('opt_2').innerHTML = q_data["answers"][1];
 			document.getElementById('opt_3').innerHTML = q_data["answers"][2];
@@ -200,8 +202,11 @@
 			}
 		}
 		function next_clip() {
-			document.getElementById('songaudio').src = main_q_data[genre_option][q_no]["audio"][1]
-			play_audio('songaudio')
+			clip_no += 1;
+			if (main_q_data[genre_option][q_no]["audio"].length>clip_no) {
+				document.getElementById('songaudio').src = main_q_data[genre_option][q_no]["audio"][clip_no]
+				play_audio('songaudio')
+			}
 		}
 		function get_answer(option) {
 			document.getElementById('correct/wrong').style.opacity = 1;
@@ -230,18 +235,25 @@
 			document.activeElement.blur();
 			document.getElementById('game_page').focus()
 		}
+
+		function gameOver() {
+			document.getElementById('game_page').style.display = "none";
+			document.getElementById('gameOver_page').style.display = "block";
+		}
+
 		function next_question() {
-			q_no += 1;
-			document.getElementById('q_no').innerHTML = "Q"+(q_no+1)
-			var opt_buttons = document.getElementsByClassName("opt_buttons")
-			for (var i = opt_buttons.length - 1; i >= 0; i--) {
-				opt_buttons[i].style.backgroundColor = "lightcoral";
-			}
-			
-			if (q_no<main_q_data[genre_option].length){
+			clip_no = 0;
+			if ((q_no+1)<main_q_data[genre_option].length){
+				q_no += 1;
+				document.getElementById('q_no').innerHTML = "Q"+(q_no+1)
+				var opt_buttons = document.getElementsByClassName("opt_buttons")
+				for (var i = opt_buttons.length - 1; i >= 0; i--) {
+					opt_buttons[i].style.backgroundColor = "lightcoral";
+				}
+
 				document.getElementById('songgif').style.visibility = "hidden";
 				var q_data = main_q_data[genre_option][q_no];
-				document.getElementById('songaudio').src = q_data["audio"][0];
+				document.getElementById('songaudio').src = q_data["audio"][clip_no];
 				document.getElementById('opt_1').innerHTML = q_data["answers"][0];
 				document.getElementById('opt_2').innerHTML = q_data["answers"][1];
 				document.getElementById('opt_3').innerHTML = q_data["answers"][2];
@@ -250,7 +262,12 @@
 				document.getElementById('next_button').style.visibility = "hidden";
 				play_audio('songaudio')
 			}
-		}
+
+			else {
+				gameOver();
+			}
+		};
+
 		function show_answers() {
 			document.getElementById('songaudio').pause();
 			document.getElementById('songgif').style.visibility = "hidden";
@@ -259,7 +276,7 @@
 				if (i+1 == main_q_data[genre_option][q_no]["correct_answer"]) {
 					opt_buttons[i].style.backgroundColor = "green";
 				}
-				else{
+				else {
 					opt_buttons[i].style.backgroundColor = "grey";
 				}
 			}
@@ -291,7 +308,7 @@
 
 	<div id="game_page" style="display: none;">
 		<audio id="songaudio" onended="fadeOut(document.getElementById('songgif'), 80)">
-			<source src="Test.mp3" type="audio/mp3">
+			<source src="" type="audio/mp3">
 		</audio>
 
 		<audio id="wrongaudio">
@@ -305,8 +322,8 @@
 		<img id="songgif" src="visualiser(2).gif" style="width: 100%; height: 200px; visibility: hidden;">
 
 		<div style="display: flex; align-items: flex-start; justify-content: center; height: 50px; padding: 10px;">
-			<!-- <button type="button" onclick="play_audio()"> --><img id="play" src="play.png" style="width: 50px;" onclick="play_audio('songaudio')">
-			<!-- <button type="button" onclick="stop_audio()"> --><img id="pause" src="pause.png" style="width: 50px;" onclick="stop_audio('songaudio')">
+			<img id="play" src="play.png" style="width: 50px;" onclick="play_audio('songaudio')">
+			<img id="pause" src="pause.png" style="width: 50px;" onclick="stop_audio('songaudio')">
 				<img id="next_clip" src="next.png" style="width: 50px;" onclick="next_clip()">
 		</div>
 
@@ -338,6 +355,13 @@
 	 		<button id="ans_button" type="button" style="width: 30%;" onclick="show_answers()">Show Answers</button>
 	 		<button id="next_button" type="button" style="width: 30%; visibility: hidden;" onclick="next_question()">Next Question</button>
 	 	</div>
+	</div>
+
+	<div id="gameOver_page" style="display: none;">
+		<h1>Game Over</h1>
+		<div style="height: 500px; display: flex; align-items: center; justify-content: center;">
+			<button type="button" style="width: 50%; height: 70px;" onclick="show_genres()">Start Again</button>
+		</div>
 	</div>
  	
 </body>
