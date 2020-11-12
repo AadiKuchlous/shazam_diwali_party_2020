@@ -11,8 +11,14 @@
 			font-size: 20px;
 		}
 	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="eng_data.js"></script>
 	<script type="text/javascript">
+		$(document).ready(function() {
+			var window_height = window.innerHeight;
+			var new_height = 550 - window_height;
+    		document.getElementById("c/w_div").style.top = new_height + "px";
+		});
 		var q_no = 0;
 		var clip_no = 0;
 		var main_q_data = [eng_data,
@@ -75,6 +81,7 @@
 		function show_genres() {
 			document.getElementById('start_page').style.display = "none";
 			document.getElementById('gameOver_page').style.display = "none";
+			document.getElementById('game_page').style.display = "none";
 			document.getElementById('genres_page').style.display = "block";
 		}
 		function start_game(genre) {
@@ -265,18 +272,20 @@
 		 	</div>
 	 	</div>
 
-	 	<div style="display: flex; align-items: center; justify-content: center; position: absolute; top: 200px; right: 500px">
+	 	<div id="c/w_div" style="display: flex; align-items: center; justify-content: center; position: relative;">
 	 		<div style="display: flex; align-items: center; justify-content: center;">
 	 			<img id="correct/wrong" src="" style="height: 400px; display: none;">
 	 		</div>
 	 	</div>
 
-	 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-	 	<div style="height: 100%; display: flex; align-items: flex-end; justify-content: flex-end;">
-	 		<button id="ans_button" type="button" style="width: 30%;" onclick="show_answers()">Show Answers</button>
-	 		<button id="next_button" type="button" style="width: 30%; visibility: hidden;" onclick="next_question()">Next Question</button>
-	 	</div>
+	 	<footer style="position: absolute; bottom: 0; width:100%; height: 60px;">
+	 		<div style="height: 100%; display: flex; flex-grow : 1; align-items: flex-end; justify-content: flex-end;">
+	 			<button id="show_genres_button" type="button" style="width: 33%;" onclick="show_genres()">Genre Page</button>
+	 			<button id="ans_button" type="button" style="width: 33%;" onclick="show_answers()">Show Answers</button>
+	 			<button id="next_button" type="button" style="width: 33%; visibility: hidden;" onclick="next_question()">Next Question</button>
+	 		</div>
+	 	</footer>	
+	 	
 	</div>
 
 	<div id="gameOver_page" style="display: none;">
