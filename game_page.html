@@ -18,47 +18,47 @@
 			[
 				{
 					audio: ["Song_Clips_Eng/attention.mp3", "Song_Clips_Eng/attention.mp3"],
-					answers: ["Taylor Swift", "Attention - Ed Sheeran", "Katy Perry", "Justin Beiber"],
+					answers: ["Shake it off - Taylor Swift", "Attention - Charlie Puth", "New Rules - Dua Lipa", "Attention - Shawn Mendes"],
 					correct_answer: 2
 				},
 				{
 					audio: ["Song_Clips_Eng/back_to_you.mp3", "Song_Clips_Eng/attention.mp3", "Song_Clips_Eng/believer.mp3"],
-					answers: ["Back to you - Salena Gomez", "Justin Beiber", "Rihanna", "Justin Timberlake"],
+					answers: ["Back to you - Salena Gomez", "Wolves - Salena Gomez", "Look what you made me do - Taylor swift", "Break free - Ariana Grande"],
 					correct_answer: 1
 				},
 				{
 					audio: ["Song_Clips_Eng/believer.mp3", "Song_Clips_Eng/attention.mp3"],
-					answers: ["Michael Jackson", "Ariana Grande", "Believer", "Miley Cyrus"],
+					answers: ["Stressed out - Twenty One Pilots", "Mercy - One republic", "Believer - Imagine dragons", "If I lose Myself - One Republic"],
 					correct_answer: 3
 				},
 				{
 					audio: ["Song_Clips_Eng/another_brick_in_the_wall.mp3", "Song_Clips_Eng/attention.mp3"],
-					answers: ["Adele", "Another brick in the wall", "Billie Eilish", "Dua Lipa"],
+					answers: ["Break On Through - The Doors", "Another brick in the wall - Pink Floyd", "On an island - David Gilmour", "No Quarter - Led Zeppelin"],
 					correct_answer: 2
 				},
 				{
 					audio: ["Song_Clips_Eng/another_one_bites_the_dust.mp3", "Song_Clips_Eng/attention.mp3"],
-					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Another one bites the dust"],
+					answers: ["Under Pressure - Queen", "Smoke on the Water - Deep Purple", "Livin' On A Prayer - Bon Jovi", "Another one bites the dust - Queen"],
 					correct_answer: 4
 				},
 				{
 					audio: ["Song_Clips_Eng/blinding_lights.mp3", "Song_Clips_Eng/attention.mp3"],
-					answers: ["Lady Gaga", "Blinding lights", "Rihanna", "Justin Timberlake"],
+					answers: ["Yummy - Justin Beiber", "Blinding lights - The Weeknd", "Up all Night - Khalid", "Something In the Way You Move - Ellie Goulding"],
 					correct_answer: 2
 				},
 				{
 					audio: ["Song_Clips_Eng/chandelier.mp3", "Song_Clips_Eng/attention.mp3"],
-					answers: ["Chandelier", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
+					answers: ["Chandelier - Sia", "Elastic Heart - Sia", "Blank Space - Taylor Swift", "Royals - Lorde"],
 					correct_answer: 1
 				},
 				{
 					audio: ["Song_Clips_Eng/closer.mp3", "Song_Clips_Eng/attention.mp3"],
-					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Closer"],
+					answers: ["Don't let me down - The Chainsmokers", "In the Name of Love - Martin Garrix", "Toothbrush - DNCE", "Closer - The Chainsmokers"],
 					correct_answer: 4
 				},
 				{
 					audio: ["Song_Clips_Eng/counting_stars.mp3", "Song_Clips_Eng/attention.mp3"],
-					answers: ["Adele", "Shawn Mendes", "Counting Stars", "Dua Lipa"],
+					answers: ["Adele", "Shawn Mendes", "Counting Stars - OneRepublic", "Dua Lipa"],
 					correct_answer: 3
 				},
 				{
@@ -299,7 +299,11 @@
 	</div>
 
 	<div id="genres_page" style="display: none;">
-		<div style="height: 600px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+		<div style="height: 70px"></div>
+		<div style="height: 80px; display: flex; align-items: center; justify-content: center;">
+			<h1>Choose Song Language</h1>
+		</div>
+		<div style="height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
 			<button type="button" style="width: 50%; height: 70px; margin: 10px" onclick="start_game(1)">English</button>
 			<button type="button" style="width: 50%; height: 70px; margin: 10px" onclick="start_game(2)">Hindi</button>
 			<button type="button" style="width: 50%; height: 70px; margin: 10px" onclick="start_game(3)">Tamil</button>
@@ -358,7 +362,9 @@
 	</div>
 
 	<div id="gameOver_page" style="display: none;">
-		<h1>Game Over</h1>
+		<div style="height: 200px; display: flex; align-items: center; justify-content: center;">
+			<h1>Game Over</h1>
+		</div>
 		<div style="height: 500px; display: flex; align-items: center; justify-content: center;">
 			<button type="button" style="width: 50%; height: 70px;" onclick="show_genres()">Start Again</button>
 		</div>
