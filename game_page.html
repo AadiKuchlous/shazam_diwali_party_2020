@@ -10,6 +10,11 @@
 			background-color: lightcoral;
 			font-size: 20px;
 		}
+		.opt_buttons{
+		}
+		.control_butttons{
+			background-color: #b3e2e2;
+		}
 	</style>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="eng_data.js"></script>
@@ -17,7 +22,7 @@
 		$(document).ready(function() {
 			var window_height = window.innerHeight;
 			var new_height = window_height/2;
-    		document.getElementById("c/w_div").style.bottom = "270px";
+    		document.getElementById("c/w_div").style.bottom = "310px";
 		});
 		var q_no = 0;
 		var clip_no = 0;
@@ -79,6 +84,7 @@
 				}, 200/speed);
 		}
 		function show_genres() {
+			document.documentElement.requestFullscreen();
 			document.getElementById('start_page').style.display = "none";
 			document.getElementById('gameOver_page').style.display = "none";
 			document.getElementById('game_page').style.display = "none";
@@ -92,6 +98,11 @@
 		}
 
 		function load_first_question(argument) {
+			q_no = 0;
+			var buttons = document.getElementsByClassName("opt_buttons");
+			for (var i = buttons.length - 1; i >= 0; i--) {
+				buttons[i].style.backgroundColor = "lightcoral";
+			}
 			document.getElementById('q_no').innerHTML = "Q"+(q_no+1)
 			document.getElementById('songgif').style.visibility = "hidden";
 			var q_data = main_q_data[genre_option][q_no];
@@ -101,6 +112,7 @@
 			document.getElementById('opt_3').innerHTML = q_data["answers"][2];
 			document.getElementById('opt_4').innerHTML = q_data["answers"][3];
 			document.getElementById('correct/wrong').style.display = "none";
+			document.getElementById('ans_button').style.display = "block";
 			document.getElementById('next_button').style.visibility = "hidden";
 			play_audio('songaudio')
 		}
@@ -141,6 +153,7 @@
 			if (option == main_q_data[genre_option][q_no]["correct_answer"]) {
 				document.getElementById('opt_'+option).style.backgroundColor = "green";
 				document.getElementById('correct/wrong').src = "tick.png";
+				document.getElementById('ans_button').style.display = "none";
 				fadeIn(document.getElementById('correct/wrong'), 25)
 				play_audio('rightaudio')
 				fadeOut(document.getElementById("options"), 25)
@@ -185,6 +198,7 @@
 				document.getElementById('opt_4').innerHTML = q_data["answers"][3];
 				fadeOutComplete(document.getElementById('correct/wrong'), 25);
 				document.getElementById('next_button').style.visibility = "hidden";
+				document.getElementById('ans_button').style.display = "block";
 				play_audio('songaudio')
 			}
 
@@ -196,6 +210,7 @@
 		function show_answers() {
 			document.getElementById('songaudio').pause();
 			document.getElementById('songgif').style.visibility = "hidden";
+			document.getElementById('ans_button').style.display = "none";
 			var opt_buttons = document.getElementsByClassName("opt_buttons")
 			for (var i = opt_buttons.length - 1; i >= 0; i--) {
 				if (i+1 == main_q_data[genre_option][q_no]["correct_answer"]) {
@@ -272,6 +287,10 @@
 		 	</div>
 	 	</div>
 
+	 	<div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+	 		<button class="control_butttons" id="ans_button" type="button" style="width: 33%; margin-top: 60px;" onclick="show_answers()">Show Answer</button>
+	 	</div>
+
 	 	<div id="c/w_div" style="display: flex; align-items: center; justify-content: center; position: relative;">
 	 		<div style="display: flex; align-items: center; justify-content: center;">
 	 			<img id="correct/wrong" src="" style="height: 400px; display: none;">
@@ -279,10 +298,14 @@
 	 	</div>
 
 	 	<footer style="position: absolute; bottom: 0; width:100%; height: 60px;">
-	 		<div style="height: 100%; display: flex; flex-grow : 1; align-items: flex-end; justify-content: flex-end;">
-	 			<button id="show_genres_button" type="button" style="width: 33%;" onclick="show_genres()">Genre Page</button>
-	 			<button id="ans_button" type="button" style="width: 33%;" onclick="show_answers()">Show Answers</button>
-	 			<button id="next_button" type="button" style="width: 33%; visibility: hidden;" onclick="next_question()">Next Question</button>
+	 		<div style="height: 100%; display: flex; align-items: flex-end; justify-content: flex-end;">
+	 			<div style="width:50%; height: 100%; display: flex; align-items: flex-end; justify-content: flex-start; padding: 15px">
+	 				<img src="home.png" style="height:40px" onclick="show_genres()">
+	 			</div>
+	 			<!-- <button class="control_butttons" id="next_button" type="button" style="width: 33%; visibility: hidden;" onclick="next_question()">Next Question</button> -->
+	 			<div id="next_button" style="width:50%; height: 100%; display: flex; align-items: flex-end; justify-content: flex-end; padding: 15px; padding-right: 25px">
+	 				<img src="arrow.png" style="height:40px; transform: scaleX(-1)" onclick="next_question()">
+	 			</div>
 	 		</div>
 	 	</footer>	
 	 	
