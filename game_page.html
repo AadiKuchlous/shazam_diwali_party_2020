@@ -22,7 +22,7 @@
 		$(document).ready(function() {
 			var window_height = window.innerHeight;
 			var new_height = window_height/2;
-    		document.getElementById("c/w_div").style.bottom = "310px";
+    		document.getElementById("c/w_div").style.bottom = "370px";
 		});
 		var q_no = 0;
 		var clip_no = 0;
@@ -93,7 +93,18 @@
 		function start_game(genre) {
 			document.getElementById('genres_page').style.display = "none";
 			document.getElementById('game_page').style.display = "block";
-			genre_option = genre - 1
+			genre_option = genre - 1;
+			var options_width = document.getElementById("options").offsetWidth;
+    		document.getElementById("options").style.height = options_width*(180/1440) + "px";
+    		var opt_buttons = document.getElementsByClassName("opt_buttons");
+    		for (var i = opt_buttons.length - 1; i >= 0; i--) {
+    			var button = opt_buttons[i]
+    			var height = document.getElementById("options").offsetHeight
+    			var fontsize = (1/7)*height + "px";
+    			button.style.fontSize = fontsize;
+    		}
+    		document.getElementById("ans_button").style.height = button.offsetHeight/2 + "px"
+    		// document.getElementById("options").style.fontSize = (2/7)*document.getElementById("options").offsetHeight + "px";
 			load_first_question();
 		}
 
@@ -276,12 +287,12 @@
 		</div>
 
 		<div id="options">
-			<div style="display: flex; justify-content: center; height: 70px">
+			<div style="display: flex; justify-content: center; height: 50%">
 		 		<button class="opt_buttons" id="opt_1" type="button" style="width: 50%" onclick="get_answer(1)">Option 1</button>
 		 		<button class="opt_buttons" id="opt_2" type="button" style="width: 50%" onclick="get_answer(2)">Option 2</button>	
 		 	</div>
 
-			<div style="display: flex; justify-content: center; height: 70px">
+			<div style="display: flex; justify-content: center; height: 50%">
 				<button class="opt_buttons" id="opt_3" type="button" style="width: 50%" onclick="get_answer(3)">Option 3</button>
 		 		<button class="opt_buttons" id="opt_4" type="button" style="width: 50%" onclick="get_answer(4)">Option 4</button>
 		 	</div>
