@@ -22,7 +22,6 @@
 		$(document).ready(function() {
 			var window_height = window.innerHeight;
 			var new_height = window_height/2;
-    		document.getElementById("c/w_div").style.bottom = "370px";
 		});
 		var q_no = 0;
 		var clip_no = 0;
@@ -95,7 +94,7 @@
 			document.getElementById('game_page').style.display = "block";
 			genre_option = genre - 1;
 			var options_width = document.getElementById("options").offsetWidth;
-    		document.getElementById("options").style.height = options_width*(180/1440) + "px";
+    		document.getElementById("options").style.height = options_width*(200/1440) + "px";
     		var opt_buttons = document.getElementsByClassName("opt_buttons");
     		for (var i = opt_buttons.length - 1; i >= 0; i--) {
     			var button = opt_buttons[i]
@@ -103,7 +102,12 @@
     			var fontsize = (1/7)*height + "px";
     			button.style.fontSize = fontsize;
     		}
-    		document.getElementById("ans_button").style.height = button.offsetHeight/2 + "px"
+    		document.getElementById("ans_button").style.height = button.offsetHeight/2 + "px";
+    		document.getElementById("ans_button").style.margin = document.getElementById("ans_button").offsetHeight*2 +"px";
+    		var indicator_pos = 200;
+			indicator_pos = indicator_pos + document.getElementById("ans_button_div").offsetHeight;
+			indicator_pos = indicator_pos + document.getElementById("options").offsetHeight/2
+    		document.getElementById("c/w_div").style.bottom = indicator_pos + "px";
     		// document.getElementById("options").style.fontSize = (2/7)*document.getElementById("options").offsetHeight + "px";
 			load_first_question();
 		}
@@ -298,7 +302,7 @@
 		 	</div>
 	 	</div>
 
-	 	<div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+	 	<div id="ans_button_div" style="height: 100%; display: flex; align-items: center; justify-content: center;">
 	 		<button class="control_butttons" id="ans_button" type="button" style="width: 33%; margin-top: 60px;" onclick="show_answers()">Show Answer</button>
 	 	</div>
 
