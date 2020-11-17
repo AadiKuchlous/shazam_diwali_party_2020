@@ -18,6 +18,7 @@
 	</style>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="eng_data.js"></script>
+	<script type="text/javascript" src="hin_data.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var window_height = window.innerHeight;
@@ -25,30 +26,7 @@
 		});
 		var q_no = 0;
 		var clip_no = 0;
-		var main_q_data = [eng_data,
-			[
-				{
-					audio: ["Song_Clips_Eng/attention.mp3"],
-					answers: ["Taylor Swift", "Ed Sheeran", "Katy Perry", "Justin Beiber"],
-					correct_answer: 4
-				},
-				{
-					audio: ["Song_Clips_Eng/attention.mp3"],
-					answers: ["Lady Gaga", "Justin Beiber", "Rihanna", "Justin Timberlake"],
-					correct_answer: 3
-				},
-				{
-					audio: ["Song_Clips_Eng/attention.mp3"],
-					answers: ["Michael Jackson", "Ariana Grande", "Bruno Mars", "Miley Cyrus"],
-					correct_answer: 2
-				},
-				{
-					audio: ["Song_Clips_Eng/attention.mp3"],
-					answers: ["Adele", "Shawn Mendes", "Billie Eilish", "Dua Lipa"],
-					correct_answer: 1
-				}
-			]
-		];
+		var main_q_data = [eng_data, hin_data];
 		var genre_option = 0;
 		function fadeOutComplete(img, speed){
 			img.style.opacity = 1
@@ -60,6 +38,23 @@
 						img.style.display = "none"
 					}
 				}, 200/speed);
+		}
+		function setup() {
+			var options_width = document.getElementById("options").offsetWidth;
+    		document.getElementById("options").style.height = options_width*(200/1440) + "px";
+    		var opt_buttons = document.getElementsByClassName("opt_buttons");
+    		for (var i = opt_buttons.length - 1; i >= 0; i--) {
+    			var button = opt_buttons[i]
+    			var height = document.getElementById("options").offsetHeight
+    			var fontsize = (1/7)*height + "px";
+    			button.style.fontSize = fontsize;
+    		}
+			document.getElementById("ans_button").style.height = button.offsetHeight/2 + "px";
+    		document.getElementById("ans_button").style.margin = document.getElementById("ans_button").offsetHeight*2 +"px";
+    		var indicator_pos = 200;
+			indicator_pos = indicator_pos + document.getElementById("ans_button_div").offsetHeight;
+			indicator_pos = indicator_pos + document.getElementById("options").offsetHeight/2
+    		document.getElementById("c/w_div").style.bottom = indicator_pos + "px";
 		}
 		function fadeOut(img, speed){
 			img.style.opacity = 1
@@ -93,45 +88,55 @@
 			document.getElementById('genres_page').style.display = "none";
 			document.getElementById('game_page').style.display = "block";
 			genre_option = genre - 1;
-			var options_width = document.getElementById("options").offsetWidth;
-    		document.getElementById("options").style.height = options_width*(200/1440) + "px";
-    		var opt_buttons = document.getElementsByClassName("opt_buttons");
-    		for (var i = opt_buttons.length - 1; i >= 0; i--) {
-    			var button = opt_buttons[i]
-    			var height = document.getElementById("options").offsetHeight
-    			var fontsize = (1/7)*height + "px";
-    			button.style.fontSize = fontsize;
-    		}
-    		document.getElementById("ans_button").style.height = button.offsetHeight/2 + "px";
-    		document.getElementById("ans_button").style.margin = document.getElementById("ans_button").offsetHeight*2 +"px";
-    		var indicator_pos = 200;
-			indicator_pos = indicator_pos + document.getElementById("ans_button_div").offsetHeight;
-			indicator_pos = indicator_pos + document.getElementById("options").offsetHeight/2
-    		document.getElementById("c/w_div").style.bottom = indicator_pos + "px";
-    		// document.getElementById("options").style.fontSize = (2/7)*document.getElementById("options").offsetHeight + "px";
+    		setup()
 			load_first_question();
 		}
-
-		function load_first_question(argument) {
-			q_no = 0;
-			var buttons = document.getElementsByClassName("opt_buttons");
-			for (var i = buttons.length - 1; i >= 0; i--) {
-				buttons[i].style.backgroundColor = "lightcoral";
-			}
-			document.getElementById('q_no').innerHTML = "Q"+(q_no+1)
-			document.getElementById('songgif').style.visibility = "hidden";
+		function show_options(){
 			var q_data = main_q_data[genre_option][q_no];
-			document.getElementById('songaudio').src = q_data["audio"][clip_no];
 			document.getElementById('opt_1').innerHTML = q_data["answers"][0];
 			document.getElementById('opt_2').innerHTML = q_data["answers"][1];
 			document.getElementById('opt_3').innerHTML = q_data["answers"][2];
 			document.getElementById('opt_4').innerHTML = q_data["answers"][3];
+			document.getElementById('ans_button').innerHTML = "Show Answer";
+			document.getElementById('ans_button').onclick = show_answers;
+		}
+		function load_question() {
+			q_no += 1;
+			document.getElementById('q_no').innerHTML = "Q"+(q_no+1)
+			var opt_buttons = document.getElementsByClassName("opt_buttons")
+			for (var i = opt_buttons.length - 1; i >= 0; i--) {
+				opt_buttons[i].style.backgroundColor = "lightcoral";
+			}
+
+			document.getElementById('songgif').style.visibility = "hidden";
+			var q_data = main_q_data[genre_option][q_no];
+			document.getElementById('songaudio').src = q_data["audio"][clip_no];
+			var checkbox = document.getElementById("show_opt")
+			// if (checkbox.checked == true) {
+				document.getElementById('opt_1').innerHTML = "";
+				document.getElementById('opt_2').innerHTML = "";
+				document.getElementById('opt_3').innerHTML = "";
+				document.getElementById('opt_4').innerHTML = "";
+				document.getElementById('ans_button').innerHTML = "Show Options";
+				document.getElementById('ans_button').onclick = show_options;
+				document.getElementById('ans_button').style.display = "block";
+				play_audio("songaudio")
+			// }
+			// else {
+			// 	document.getElementById('opt_1').innerHTML = q_data["answers"][0];
+			// 	document.getElementById('opt_2').innerHTML = q_data["answers"][1];
+			// 	document.getElementById('opt_3').innerHTML = q_data["answers"][2];
+			// 	document.getElementById('opt_4').innerHTML = q_data["answers"][3];
+			// }
+		}
+		function load_first_question() {
+			q_no = -1;
+			load_question()
 			document.getElementById('correct/wrong').style.display = "none";
 			document.getElementById('ans_button').style.display = "block";
 			document.getElementById('next_button').style.visibility = "hidden";
 			play_audio('songaudio')
 		}
-
 		function play_audio(id) {
 			var audio = document.getElementById(id)
 			if (!audio.paused) {
@@ -157,23 +162,27 @@
 			clip_no += 1;
 			if (main_q_data[genre_option][q_no]["audio"].length>clip_no) {
 				document.getElementById('songaudio').src = main_q_data[genre_option][q_no]["audio"][clip_no]
-				play_audio('songaudio')
 			}
+			play_audio('songaudio')
 		}
 		function get_answer(option) {
 			document.getElementById('correct/wrong').style.opacity = 1;
+			document.getElementById('correct/wrong').style.display = "block";
 			document.getElementById('songaudio').pause();
 			document.getElementById('songgif').style.visibility = "hidden";
-			document.getElementById('correct/wrong').style.display = "block";
 			if (option == main_q_data[genre_option][q_no]["correct_answer"]) {
 				document.getElementById('opt_'+option).style.backgroundColor = "green";
 				document.getElementById('correct/wrong').src = "tick.png";
 				document.getElementById('ans_button').style.display = "none";
-				fadeIn(document.getElementById('correct/wrong'), 25)
-				play_audio('rightaudio')
-				fadeOut(document.getElementById("options"), 25)
-				fadeOutComplete(document.getElementById('correct/wrong'), 25)
-				fadeIn(document.getElementById("options"), 25)
+				fadeIn(document.getElementById('correct/wrong'), 25);
+				play_audio('rightaudio');
+				fadeOut(document.getElementById("options"), 25);
+				fadeOutComplete(document.getElementById('correct/wrong'), 25);
+				fadeIn(document.getElementById("options"), 25);
+				setTimeout(function() {
+					show_answers();
+				}, 300)
+
 			}
 			else {
 				document.getElementById('opt_'+option).style.backgroundColor = "grey";
@@ -188,29 +197,16 @@
 			document.activeElement.blur();
 			document.getElementById('game_page').focus()
 		}
-
 		function gameOver() {
 			document.getElementById('game_page').style.display = "none";
 			document.getElementById('gameOver_page').style.display = "block";
 		}
-
 		function next_question() {
 			clip_no = 0;
 			if ((q_no+1)<main_q_data[genre_option].length){
-				q_no += 1;
-				document.getElementById('q_no').innerHTML = "Q"+(q_no+1)
-				var opt_buttons = document.getElementsByClassName("opt_buttons")
-				for (var i = opt_buttons.length - 1; i >= 0; i--) {
-					opt_buttons[i].style.backgroundColor = "lightcoral";
-				}
-
-				document.getElementById('songgif').style.visibility = "hidden";
-				var q_data = main_q_data[genre_option][q_no];
-				document.getElementById('songaudio').src = q_data["audio"][clip_no];
-				document.getElementById('opt_1').innerHTML = q_data["answers"][0];
-				document.getElementById('opt_2').innerHTML = q_data["answers"][1];
-				document.getElementById('opt_3').innerHTML = q_data["answers"][2];
-				document.getElementById('opt_4').innerHTML = q_data["answers"][3];
+				load_question()
+				var checkbox = document.getElementById("show_opt")
+				checkbox.checked = false;
 				fadeOutComplete(document.getElementById('correct/wrong'), 25);
 				document.getElementById('next_button').style.visibility = "hidden";
 				document.getElementById('ans_button').style.display = "block";
@@ -220,8 +216,7 @@
 			else {
 				gameOver();
 			}
-		};
-
+		}
 		function show_answers() {
 			document.getElementById('songaudio').pause();
 			document.getElementById('songgif').style.visibility = "hidden";
@@ -235,6 +230,7 @@
 					opt_buttons[i].style.backgroundColor = "grey";
 				}
 			}
+			next_clip();
 			document.getElementById('next_button').style.visibility = "visible";
 		}
 		function key_pressed(e){
@@ -242,7 +238,7 @@
 			if(e.which == 32){
 				play_audio('songaudio');
 			}
-		};
+		}
 
 	</script>
 	<title></title>
@@ -317,13 +313,15 @@
 	 			<div style="width:50%; height: 100%; display: flex; align-items: flex-end; justify-content: flex-start; padding: 15px">
 	 				<img src="home.png" style="height:40px" onclick="show_genres()">
 	 			</div>
-	 			<!-- <button class="control_butttons" id="next_button" type="button" style="width: 33%; visibility: hidden;" onclick="next_question()">Next Question</button> -->
+				<!--<div style="width:33.3%; height: 100%; display: flex; align-items: flex-end; justify-content: center; padding: 15px">
+	 				<input type="checkbox" id="show_opt">
+	 				<label> Hide options for next question</label>
+	 			</div> -->
 	 			<div id="next_button" style="width:50%; height: 100%; display: flex; align-items: flex-end; justify-content: flex-end; padding: 15px; padding-right: 25px">
 	 				<img src="arrow.png" style="height:40px; transform: scaleX(-1)" onclick="next_question()">
 	 			</div>
 	 		</div>
 	 	</footer>	
-	 	
 	</div>
 
 	<div id="gameOver_page" style="display: none;">
