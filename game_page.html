@@ -205,9 +205,8 @@
 			clip_no = 0;
 			if ((q_no+1)<main_q_data[genre_option].length){
 				load_question()
-				var checkbox = document.getElementById("show_opt")
-				checkbox.checked = false;
 				fadeOutComplete(document.getElementById('correct/wrong'), 25);
+				document.getElementById('ans_button').style.visibility = "visible";
 				document.getElementById('next_button').style.visibility = "hidden";
 				document.getElementById('ans_button').style.display = "block";
 				play_audio('songaudio')
