@@ -173,7 +173,7 @@
 			if (option == main_q_data[genre_option][q_no]["correct_answer"]) {
 				document.getElementById('opt_'+option).style.backgroundColor = "green";
 				document.getElementById('correct/wrong').src = "tick.png";
-				document.getElementById('ans_button').style.display = "none";
+				document.getElementById('ans_button').style.visibility = "hidden";
 				fadeIn(document.getElementById('correct/wrong'), 25);
 				play_audio('rightaudio');
 				fadeOut(document.getElementById("options"), 25);
@@ -220,7 +220,7 @@
 		function show_answers() {
 			document.getElementById('songaudio').pause();
 			document.getElementById('songgif').style.visibility = "hidden";
-			document.getElementById('ans_button').style.display = "none";
+			document.getElementById('ans_button').style.visibility = "hidden";
 			var opt_buttons = document.getElementsByClassName("opt_buttons")
 			for (var i = opt_buttons.length - 1; i >= 0; i--) {
 				if (i+1 == main_q_data[genre_option][q_no]["correct_answer"]) {
