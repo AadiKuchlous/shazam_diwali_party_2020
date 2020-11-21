@@ -29,6 +29,7 @@
 		var clip_no = 0;
 		var main_q_data = [eng_data, hin_data, tam_data];
 		var genre_option = 0;
+
 		function fadeOutComplete(img, speed){
 			img.style.opacity = 1
 			var increment = 0.01
@@ -135,6 +136,7 @@
 			load_question()
 			document.getElementById('correct/wrong').style.display = "none";
 			document.getElementById('ans_button').style.display = "block";
+			document.getElementById('ans_button').style.visibility = "visible";
 			document.getElementById('next_button').style.visibility = "hidden";
 			play_audio('songaudio')
 		}
@@ -144,6 +146,22 @@
 				audio.pause();
 				audio.currentTime = 0.0;
 			}
+			audio.addEventListener("timeupdate", function() {
+	    	var timeleft = document.getElementById('timeleft'),
+	        	duration = parseInt( audio.duration ),
+	        	currentTime = parseInt( audio.currentTime ),
+	        	timeLeft = duration - currentTime,
+	        	s, m;
+	    	
+	    		s = timeLeft % 60;
+	    		m = Math.floor( timeLeft / 60 ) % 60;
+	    
+	    		s = s < 10 ? "0"+s : s;
+	    		m = m < 10 ? "0"+m : m;
+	    
+	    		timeleft.innerHTML = m+":"+s;
+	    
+			}, false);
 			audio.play();
 			if (id == "songaudio") {
 				document.getElementById('songgif').style.visibility = "visible";
@@ -273,7 +291,9 @@
 		<audio id="rightaudio">
 			<source src="right.mp3" type="audio/mp3">
 		</audio>
-
+		<div>
+			<h1 id="timeleft"></h1>
+		</div>
 		<img id="songgif" src="visualiser.gif" style="width: 100%; height: 200px; visibility: hidden;">
 
 		<div style="display: flex; align-items: flex-start; justify-content: center; height: 50px; padding: 10px;">
